@@ -16,6 +16,8 @@ The notebook is originally executed on IBM Watson Studio with `Python 3.7` and `
 
 ## Summary
 
+The detailed process of data cleaning, exploration, modeling and results are provided in my blog post. Here are some key points.
+
 ### Dataset
 
 The dataset used in this project is a small subset (~200MB) of the original dataset (~12GB) provided by Udacity. In this dataset, there are 448 unique users and 99 cancelations / churners (~22%).
