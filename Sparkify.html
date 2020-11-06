@@ -14093,7 +14093,7 @@ div#notebook {
 
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">ibmos2spark</span>
@@ -14117,26 +14117,6 @@ div#notebook {
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Waiting for a Spark session to start...
-Spark Initialization Done! ApplicationId = 
-KERNEL_ID = 
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -14153,7 +14133,7 @@ KERNEL_ID =
 <span class="kn">from</span> <span class="nn">pyspark.storagelevel</span> <span class="k">import</span> <span class="n">StorageLevel</span>
 <span class="kn">from</span> <span class="nn">pyspark.ml</span> <span class="k">import</span> <span class="n">Pipeline</span>
 <span class="kn">from</span> <span class="nn">pyspark.ml.feature</span> <span class="k">import</span> <span class="n">VectorAssembler</span><span class="p">,</span> <span class="n">StandardScaler</span>
-<span class="kn">from</span> <span class="nn">pyspark.ml.classification</span> <span class="k">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">pyspark.ml.classification</span> <span class="k">import</span> <span class="n">RandomForestClassifier</span>
 <span class="kn">from</span> <span class="nn">pyspark.ml.tuning</span> <span class="k">import</span> <span class="n">CrossValidator</span><span class="p">,</span> <span class="n">ParamGridBuilder</span>
 <span class="kn">from</span> <span class="nn">pyspark.ml.evaluation</span> <span class="k">import</span> <span class="n">MulticlassClassificationEvaluator</span>
 </pre></div>
@@ -14788,8 +14768,8 @@ only showing top 20 rows
 |               Error|   519|
 |      Submit Upgrade|   287|
 |    Submit Downgrade|   117|
-|Cancellation Conf...|    99|
 |              Cancel|    99|
+|Cancellation Conf...|    99|
 |            Register|    11|
 | Submit Registration|     4|
 +--------------------+------+
@@ -17172,12 +17152,12 @@ only showing top 20 rows
     <span class="c1"># Scale features</span>
     <span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">(</span><span class="n">inputCol</span><span class="o">=</span><span class="s2">&quot;features&quot;</span><span class="p">,</span> <span class="n">outputCol</span><span class="o">=</span><span class="s2">&quot;scaledFeatures&quot;</span><span class="p">,</span> <span class="n">withStd</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">withMean</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     
-    <span class="n">lr</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">featuresCol</span><span class="o">=</span><span class="s2">&quot;scaledFeatures&quot;</span><span class="p">,</span> <span class="n">labelCol</span><span class="o">=</span><span class="s2">&quot;Churn&quot;</span><span class="p">,</span> <span class="n">regParam</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">elasticNetParam</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">lr</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">featuresCol</span><span class="o">=</span><span class="s2">&quot;scaledFeatures&quot;</span><span class="p">,</span> <span class="n">labelCol</span><span class="o">=</span><span class="s2">&quot;Churn&quot;</span><span class="p">)</span>
     <span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">stages</span><span class="o">=</span><span class="p">[</span><span class="n">assembler</span><span class="p">,</span> <span class="n">scaler</span><span class="p">,</span> <span class="n">lr</span><span class="p">])</span>
     
     <span class="n">paramGrid</span> <span class="o">=</span> <span class="n">ParamGridBuilder</span><span class="p">()</span> \
-        <span class="o">.</span><span class="n">addGrid</span><span class="p">(</span><span class="n">lr</span><span class="o">.</span><span class="n">elasticNetParam</span><span class="p">,[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span> \
-        <span class="o">.</span><span class="n">addGrid</span><span class="p">(</span><span class="n">lr</span><span class="o">.</span><span class="n">regParam</span><span class="p">,[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span> \
+        <span class="o">.</span><span class="n">addGrid</span><span class="p">(</span><span class="n">lr</span><span class="o">.</span><span class="n">maxDepth</span><span class="p">,[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">30</span><span class="p">])</span> \
+        <span class="o">.</span><span class="n">addGrid</span><span class="p">(</span><span class="n">lr</span><span class="o">.</span><span class="n">numTrees</span><span class="p">,[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span> \
         <span class="o">.</span><span class="n">build</span><span class="p">()</span>
 
     <span class="n">crossval</span> <span class="o">=</span> <span class="n">CrossValidator</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">pipeline</span><span class="p">,</span>
@@ -17241,7 +17221,7 @@ only showing top 20 rows
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>The best f1 score:  0.8586240445386556
+<pre>The best f1 score:  0.8814636589809766
 </pre>
 </div>
 </div>
@@ -17286,8 +17266,8 @@ only showing top 20 rows
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{Param(parent=&#39;LogisticRegression_775804ff8341&#39;, name=&#39;elasticNetParam&#39;, doc=&#39;the ElasticNet mixing parameter, in range [0, 1]. For alpha = 0, the penalty is an L2 penalty. For alpha = 1, it is an L1 penalty.&#39;): 0.0,
- Param(parent=&#39;LogisticRegression_775804ff8341&#39;, name=&#39;regParam&#39;, doc=&#39;regularization parameter (&gt;= 0).&#39;): 0.0}</pre>
+<pre>{Param(parent=&#39;RandomForestClassifier_5c12e97fffb4&#39;, name=&#39;maxDepth&#39;, doc=&#39;Maximum depth of the tree. (&gt;= 0) E.g., depth 0 means 1 leaf node; depth 1 means 1 internal node + 2 leaf nodes.&#39;): 12,
+ Param(parent=&#39;RandomForestClassifier_5c12e97fffb4&#39;, name=&#39;numTrees&#39;, doc=&#39;Number of trees to train (&gt;= 1).&#39;): 20}</pre>
 </div>
 
 </div>
@@ -17349,7 +17329,7 @@ only showing top 20 rows
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[67]:</div>
+<div class="prompt input_prompt">In&nbsp;[65]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">prediction</span><span class="o">.</span><span class="n">groupBy</span><span class="p">([</span><span class="s2">&quot;Churn&quot;</span><span class="p">,</span> <span class="s2">&quot;prediction&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -17413,7 +17393,7 @@ only showing top 20 rows
         <span class="s2">&quot;Percentage of Downgrade&quot;</span>
     <span class="p">],</span> 
     <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Feature importance&quot;</span><span class="p">],</span>
-    <span class="n">data</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">bestModel</span><span class="o">.</span><span class="n">stages</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">coefficients</span><span class="o">.</span><span class="n">toArray</span><span class="p">()</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">bestModel</span><span class="o">.</span><span class="n">stages</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">featureImportances</span><span class="o">.</span><span class="n">toArray</span><span class="p">()</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
 <span class="p">)</span>
 </pre></div>
 
@@ -17456,55 +17436,55 @@ only showing top 20 rows
   <tbody>
     <tr>
       <th>Total number of interactions</th>
-      <td>0.767250</td>
+      <td>0.103987</td>
     </tr>
     <tr>
       <th>Registration timestamp</th>
-      <td>-1.026966</td>
+      <td>0.081704</td>
     </tr>
     <tr>
       <th>Last interaction timestamp</th>
-      <td>-1.517650</td>
+      <td>0.262329</td>
     </tr>
     <tr>
       <th>User lifetime</th>
-      <td>-0.755161</td>
+      <td>0.122360</td>
     </tr>
     <tr>
       <th>Average interations during lifetime</th>
-      <td>-0.228037</td>
+      <td>0.128991</td>
     </tr>
     <tr>
       <th>Level</th>
-      <td>1.054945</td>
+      <td>0.011360</td>
     </tr>
     <tr>
       <th>Percentage of Thumbs Up</th>
-      <td>-0.528154</td>
+      <td>0.031204</td>
     </tr>
     <tr>
       <th>Percentage of Thumbs Down</th>
-      <td>-0.007088</td>
+      <td>0.040703</td>
     </tr>
     <tr>
       <th>Percentage of Home</th>
-      <td>-0.817502</td>
+      <td>0.036691</td>
     </tr>
     <tr>
       <th>Percentage of NextSong</th>
-      <td>-1.118621</td>
+      <td>0.031239</td>
     </tr>
     <tr>
       <th>Percentage of Add to Playlist</th>
-      <td>-0.274311</td>
+      <td>0.045979</td>
     </tr>
     <tr>
       <th>Percentage of Roll Advert</th>
-      <td>0.456238</td>
+      <td>0.051591</td>
     </tr>
     <tr>
       <th>Percentage of Downgrade</th>
-      <td>0.353301</td>
+      <td>0.051863</td>
     </tr>
   </tbody>
 </table>
@@ -17517,18 +17497,12 @@ only showing top 20 rows
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-    </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="-"> <a class="anchor-link" href="#-">&#182;</a></h5>
 </div>
 </div>
-
 </div>
     </div>
   </div>
