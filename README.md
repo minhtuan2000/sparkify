@@ -1,4 +1,4 @@
-# Churn predicion with Sparkify
+# Churn predicion with Spark
 
 Sparkify is a fictional music stream service created by [Udacity](https://www.udacity.com/) for the capstone project of the Data Scientist Nanodegree. The goal of this project is to predict the churn rate of users on the platform. 
 
@@ -20,13 +20,19 @@ The notebook is originally executed on IBM Watson Studio with `Python 3.7` and `
 
 The dataset used in this project is a small subset (~200MB) of the original dataset (~12GB) provided by Udacity. In this dataset, there are 448 unique users and 99 cancelations / churners (~22%).
 
-### Data exploration
+### Key data visualizations
 
 The last interaction timestamp is the key feature to distinguish churner.
 
+![image](https://github.com/minhtuan2000/sparkify/blob/main/graphs/distribution_last_interation_user.png?raw=true)
+
 Longtime users are more loyal to the service.
+
+![image](https://github.com/minhtuan2000/sparkify/blob/main/graphs/distribution_user_lifetime.png?raw=true)
 
 ### Model 
 
 Using Random Forest classifier, the model was able to reach F1 score of 0.88 and accurately predict 34 out of 36 users in the test dataset.
+
+![image](https://github.com/minhtuan2000/sparkify/blob/main/graphs/prediction.png?raw=true)
 
