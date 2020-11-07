@@ -16,7 +16,7 @@ The notebook is originally executed on IBM Watson Studio with `Python 3.7` and `
 
 ## Summary
 
-The detailed process of data cleaning, exploration, modeling and results are provided in my blog post. Here are just some key points.
+The detailed process of data cleaning, exploration, modeling and results are provided in [my blog post](https://minhtuan270820000.medium.com/churn-prediction-with-spark-e16d96bbf147). Here are just some key points.
 
 ### Dataset
 
