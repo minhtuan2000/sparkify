@@ -32,6 +32,14 @@ Longtime users are more loyal to the service.
 
 ![image](https://github.com/minhtuan2000/sparkify/blob/main/graphs/distribution_user_lifetime.png?raw=true)
 
+Subscription level has no effect on churn rate.
+
+![image](https://github.com/minhtuan2000/sparkify/blob/main/graphs/distribution_user_level.png?raw=true)
+
+In average, churned users have less `Thumbs Up`, less `NextSong`, less `Add to Playlist`, more `Thumbs Down`, more `Roll Advert` and more `Downgrade`. Note that `Downgrade` is not the actual account downgrading event but the page where users can choose to downgrade their account.
+
+![image](https://github.com/minhtuan2000/sparkify/blob/main/graphs/distribution_page_percentage.png?raw=true)
+
 ### Model 
 
 Using Random Forest classifier, the model was able to reach F1 score of 0.88 and accurately predict 34 out of 36 users in the test dataset.
