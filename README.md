@@ -1,10 +1,12 @@
 # Churn predicion with Spark
 
-Sparkify is a fictional music stream service created by [Udacity](https://www.udacity.com/) for the capstone project of the Data Scientist Nanodegree. The goal of this project is to predict the churn rate of users on the platform. 
+Sparkify is a fictional music stream service created by [Udacity](https://www.udacity.com/) for the capstone project of the Data Scientist Nanodegree. The goal of this project is to predict the churn rate of users on the platform using Spark. 
 
-As a streaming service, Sparkify generates a large dataset of user interactions and presumably, will continue to generate even more data in the future. Thus, it has entered the realm of Big Data and I used Spark to work with the data in the project.
+## Motivation
 
-## Repository
+Big data is becoming increasingly important in the industry and I believe that Spark is one of the key skills to learn in data science. This project is an exellent chance for me to learn Spark and apply to a real-world problem. Moreover, as it also conclude my journey with the Data Scientist Nanodegree, I will also be able to apply all of my knowledge from data analysis and visualization to building machine learning pipelines and show off my skills.
+
+## Directories
 
 `Sparkify.ipynb` and `Sparkify.html` are the main Jupyter Notebook and its corresponding HTML version.
 
@@ -13,6 +15,14 @@ The folder `graphs` contains some useful visualizations.
 ## Getting started
 
 The notebook is originally executed on IBM Watson Studio with `Python 3.7` and `Spark 3.0.1` (2 Executors: 1 vCPU and 4 GB RAM, Driver: 1 vCPU and 4 GB RAM). In order to run the notebook, you will need to fill in the fields `service_id`, `iam_service_endpoint`, `configuration_name` and `bucket_name` in the first cell.
+
+List of required Python libraries to run the notebook:
+
+- PySpark (including PySpark ML)
+- Numpy
+- Pandas
+- Matplotlib
+- Seaborn
 
 ## Summary
 
