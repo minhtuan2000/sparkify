@@ -16,7 +16,7 @@ As big data is becoming increasingly popular in the industry, I believe that bei
 
 ## Getting started
 
-The notebook is originally executed on IBM Watson Studio with `Python 3.7` and `Spark 3.0.1` (2 Executors: 1 vCPU and 4 GB RAM, Driver: 1 vCPU and 4 GB RAM). In order to run the notebook, you will need to fill in the fields `service_id`, `iam_service_endpoint`, `configuration_name` and `bucket_name` in the first cell.
+The notebook is originally executed on IBM Watson Studio with `Python 3.7` and `Spark 3.0.1` (2 Executors: 1 vCPU and 4 GB RAM, Driver: 1 vCPU and 4 GB RAM). In order to run the notebook, you will need to replace in the fields `service_id`, `iam_service_endpoint`, `configuration_name` and `bucket_name` in the first cell. The access key shown is revoked.
 
 List of required Python libraries to run the notebook:
 
