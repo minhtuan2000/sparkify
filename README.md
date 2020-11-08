@@ -1,14 +1,12 @@
 # Churn predicion with Spark
 
-Churn prediction is crucial to customer retention and one of the primary keys for success as it helps businesses proactively reach out to customers with the right offers and discounts at decisive moments.
+Sparkify is a fictional music streaming service created by [Udacity](https://www.udacity.com/). It has collected a large database on the activities of thousands of unique users on its platform. 
 
-For the capstone project of Udacity's Data Scientist Nanodegree, I attempted to build a machine learning pipeline for churn prediction for Sparkify, a fictional music streaming service created by [Udacity](https://www.udacity.com/).
+## Motivation
 
-Sparkify has collected a large database on the activities of thousands of unique users on its platform. As a growing service, Sparkify will continue to generate even more data in the future (presuming it exists, of course). In this case, Spark proves to be a suitable tool as it offers the much-needed scalability.
+As a growing service, Sparkify will continue to generate even more data in the future (presuming it exists, of course). In this case, Spark proves to be a suitable tool to work with the data as it offers the much-needed scalability.
 
-## Personal motivation
-
-Big data is becoming increasingly important in the industry and I believe that Spark is one of the key skills to learn in data science. This project is an exellent chance for me to learn Spark and apply to a real-world problem. Moreover, as it also conclude my journey with the Data Scientist Nanodegree, I will also be able to apply all of my knowledge from data analysis and visualization to building machine learning pipelines and show my skills.
+As big data is becoming increasingly popular in the industry, I believe that being able to work with big data is one of the key skills to learn in data science. This project is an exellent chance for me to learn Spark and apply to a real-world problem. Moreover, as it also conclude my journey with the Data Scientist Nanodegree, I will be able to apply all of my knowledge from data analysis and visualization to building machine learning pipelines.
 
 ## Directories
 
@@ -56,7 +54,4 @@ In average, churned users have less `Thumbs Up`, less `NextSong`, less `Add to P
 
 ### Model 
 
-Using Random Forest classifier, the model was able to reach F1 score of 0.88 and accurately predict 34 out of 36 users in the test dataset.
-
-![image](https://github.com/minhtuan2000/sparkify/blob/main/graphs/prediction.png?raw=true)
-
+Using Random Forest classifier, the model was able to reach F1 score of 0.88 and accurately predict 33 out of 36 users in the test dataset.
