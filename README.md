@@ -1,10 +1,14 @@
 # Churn predicion with Spark
 
-Sparkify is a fictional music stream service created by [Udacity](https://www.udacity.com/) for the capstone project of the Data Scientist Nanodegree. The goal of this project is to predict the churn rate of users on the platform using Spark. 
+Churn prediction is crucial to customer retention and one of the primary keys for success as it helps businesses proactively reach out to customers with the right offers and discounts at decisive moments.
 
-## Motivation
+For the capstone project of Udacity's Data Scientist Nanodegree, I attempted to build a machine learning pipeline for churn prediction for Sparkify, a fictional music streaming service created by [Udacity](https://www.udacity.com/).
 
-Big data is becoming increasingly important in the industry and I believe that Spark is one of the key skills to learn in data science. This project is an exellent chance for me to learn Spark and apply to a real-world problem. Moreover, as it also conclude my journey with the Data Scientist Nanodegree, I will also be able to apply all of my knowledge from data analysis and visualization to building machine learning pipelines and show off my skills.
+Sparkify has collected a large database on the activities of thousands of unique users on its platform. As a growing service, Sparkify will continue to generate even more data in the future (presuming it exists, of course). In this case, Spark proves to be a suitable tool as it offers the much-needed scalability.
+
+## Personal motivation
+
+Big data is becoming increasingly important in the industry and I believe that Spark is one of the key skills to learn in data science. This project is an exellent chance for me to learn Spark and apply to a real-world problem. Moreover, as it also conclude my journey with the Data Scientist Nanodegree, I will also be able to apply all of my knowledge from data analysis and visualization to building machine learning pipelines and show my skills.
 
 ## Directories
 
