@@ -12,9 +12,9 @@ Big data is becoming increasingly important in the industry and I believe that S
 
 ## Directories
 
-`Sparkify.ipynb` and `Sparkify.html` are the main Jupyter Notebook and its corresponding HTML version.
+- `Sparkify.ipynb` and `Sparkify.html` are the main Jupyter Notebook and its corresponding HTML version.
 
-The folder `graphs` contains some useful visualizations.
+- `graphs` contains some useful visualizations.
 
 ## Getting started
 
