@@ -1,10 +1,10 @@
 # Churn predicion with Spark
 
-Sparkify is a fictional music streaming service created by [Udacity](https://www.udacity.com/). It has collected a large database on the activities of thousands of unique users on its platform. 
+Sparkify is a fictional music streaming service created by [Udacity](https://www.udacity.com/). It offers a large database on the activities of thousands of unique users on its platform. 
 
 ## Motivation
 
-As a growing service, Sparkify will continue to generate even more data in the future (presuming it exists, of course). In this case, Spark proves to be a suitable tool to work with the data as it offers the much-needed scalability.
+Presuming it exists, Sparkify will continue to generate even more data in the future. In this case, Spark proves to be a suitable tool to work with the data as it offers the much-needed scalability.
 
 As big data is becoming increasingly popular in the industry, I believe that being able to work with big data is one of the key skills to learn in data science. This project is an exellent chance for me to learn Spark and apply to a real-world problem. Moreover, as it also conclude my journey with the Data Scientist Nanodegree, I will be able to apply all of my knowledge from data analysis and visualization to building machine learning pipelines.
 
