@@ -14093,20 +14093,20 @@ div#notebook {
 
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">ibmos2spark</span>
 <span class="c1"># @hidden_cell</span>
 <span class="n">credentials</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;endpoint&#39;</span><span class="p">:</span> <span class="s1">&#39;https://s3-api.us-geo.objectstorage.service.networklayer.com&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;service_id&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;service_id&#39;</span><span class="p">:</span> <span class="s1">&#39;iam-ServiceId-1724429a-5662-4eb9-a498-0bb0e769f419&#39;</span><span class="p">,</span>
     <span class="s1">&#39;iam_service_endpoint&#39;</span><span class="p">:</span> <span class="s1">&#39;https://iam.cloud.ibm.com/oidc/token&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;api_key&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span>
+    <span class="s1">&#39;api_key&#39;</span><span class="p">:</span> <span class="s1">&#39;KFZoxNKPxKTd-ufP2fqin9YlWHzFI6MkuPQ-aPnKUmqP&#39;</span>
 <span class="p">}</span>
 
-<span class="n">configuration_name</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-<span class="n">bucket_name</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">configuration_name</span> <span class="o">=</span> <span class="s1">&#39;os_4cc7f61928664fa58a27607fdea2ec58_configs&#39;</span>
+<span class="n">bucket_name</span> <span class="o">=</span> <span class="s1">&#39;sparkify-donotdelete-pr-ncltm2mqnxphqq&#39;</span>
 <span class="n">cos</span> <span class="o">=</span> <span class="n">ibmos2spark</span><span class="o">.</span><span class="n">CloudObjectStorage</span><span class="p">(</span><span class="n">sc</span><span class="p">,</span> <span class="n">credentials</span><span class="p">,</span> <span class="n">configuration_name</span><span class="p">,</span> <span class="s1">&#39;bluemix_cos&#39;</span><span class="p">)</span>
 
 <span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="k">import</span> <span class="n">SparkSession</span>
@@ -14114,6 +14114,26 @@ div#notebook {
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Waiting for a Spark session to start...
+Spark Initialization Done! ApplicationId = app-20201108094221-0000
+KERNEL_ID = 6a1883e7-62ae-471f-b3e0-81529fd3eaeb
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -14133,7 +14153,7 @@ div#notebook {
 <span class="kn">from</span> <span class="nn">pyspark.storagelevel</span> <span class="k">import</span> <span class="n">StorageLevel</span>
 <span class="kn">from</span> <span class="nn">pyspark.ml</span> <span class="k">import</span> <span class="n">Pipeline</span>
 <span class="kn">from</span> <span class="nn">pyspark.ml.feature</span> <span class="k">import</span> <span class="n">VectorAssembler</span><span class="p">,</span> <span class="n">StandardScaler</span>
-<span class="kn">from</span> <span class="nn">pyspark.ml.classification</span> <span class="k">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span> <span class="nn">pyspark.ml.classification</span> <span class="k">import</span> <span class="n">RandomForestClassifier</span><span class="p">,</span> <span class="n">LinearSVC</span><span class="p">,</span> <span class="n">LogisticRegression</span>
 <span class="kn">from</span> <span class="nn">pyspark.ml.tuning</span> <span class="k">import</span> <span class="n">CrossValidator</span><span class="p">,</span> <span class="n">ParamGridBuilder</span>
 <span class="kn">from</span> <span class="nn">pyspark.ml.evaluation</span> <span class="k">import</span> <span class="n">MulticlassClassificationEvaluator</span>
 </pre></div>
@@ -14872,7 +14892,7 @@ only showing top 20 rows
 <div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="n">F</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">isNull</span><span class="p">()</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">])</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="n">F</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">isNull</span><span class="p">()</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">])</span><span class="o">.</span><span class="n">toPandas</span><span class="p">()</span><span class="o">.</span><span class="n">T</span>
 </pre></div>
 
     </div>
@@ -14885,18 +14905,110 @@ only showing top 20 rows
 
 <div class="output_area">
 
-    <div class="prompt"></div>
+    <div class="prompt output_prompt">Out[19]:</div>
 
 
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>+------+----+---------+------+-------------+--------+------+-----+--------+------+----+------------+---------+------+------+---+---------+------+
-|artist|auth|firstName|gender|itemInSession|lastName|length|level|location|method|page|registration|sessionId|  song|status| ts|userAgent|userId|
-+------+----+---------+------+-------------+--------+------+-----+--------+------+----+------------+---------+------+------+---+---------+------+
-|110828|   0|    15700| 15700|            0|   15700|110828|    0|   15700|     0|   0|       15700|        0|110828|     0|  0|    15700|     0|
-+------+----+---------+------+-------------+--------+------+-----+--------+------+----+------------+---------+------+------+---+---------+------+
 
-</pre>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>artist</th>
+      <td>110828</td>
+    </tr>
+    <tr>
+      <th>auth</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>firstName</th>
+      <td>15700</td>
+    </tr>
+    <tr>
+      <th>gender</th>
+      <td>15700</td>
+    </tr>
+    <tr>
+      <th>itemInSession</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>lastName</th>
+      <td>15700</td>
+    </tr>
+    <tr>
+      <th>length</th>
+      <td>110828</td>
+    </tr>
+    <tr>
+      <th>level</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>location</th>
+      <td>15700</td>
+    </tr>
+    <tr>
+      <th>method</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>page</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>registration</th>
+      <td>15700</td>
+    </tr>
+    <tr>
+      <th>sessionId</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>song</th>
+      <td>110828</td>
+    </tr>
+    <tr>
+      <th>status</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>ts</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>userAgent</th>
+      <td>15700</td>
+    </tr>
+    <tr>
+      <th>userId</th>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
 </div>
+</div>
+
 </div>
 
 </div>
@@ -15066,7 +15178,7 @@ only showing top 20 rows
 <div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">clean_df</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="n">F</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">isNull</span><span class="p">()</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">])</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">clean_df</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="n">F</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">isNull</span><span class="p">()</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">])</span><span class="o">.</span><span class="n">toPandas</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -15079,18 +15191,76 @@ only showing top 20 rows
 
 <div class="output_area">
 
-    <div class="prompt"></div>
+    <div class="prompt output_prompt">Out[25]:</div>
 
 
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>+------+----+---------+------+-------------+--------+------+-----+--------+------+----+------------+---------+-----+------+---+---------+------+
-|artist|auth|firstName|gender|itemInSession|lastName|length|level|location|method|page|registration|sessionId| song|status| ts|userAgent|userId|
-+------+----+---------+------+-------------+--------+------+-----+--------+------+----+------------+---------+-----+------+---+---------+------+
-| 95128|   0|        0|     0|            0|       0| 95128|    0|       0|     0|   0|           0|        0|95128|     0|  0|        0|     0|
-+------+----+---------+------+-------------+--------+------+-----+--------+------+----+------------+---------+-----+------+---+---------+------+
 
-</pre>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>artist</th>
+      <th>auth</th>
+      <th>firstName</th>
+      <th>gender</th>
+      <th>itemInSession</th>
+      <th>lastName</th>
+      <th>length</th>
+      <th>level</th>
+      <th>location</th>
+      <th>method</th>
+      <th>page</th>
+      <th>registration</th>
+      <th>sessionId</th>
+      <th>song</th>
+      <th>status</th>
+      <th>ts</th>
+      <th>userAgent</th>
+      <th>userId</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>95128</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>95128</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>95128</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
 </div>
+</div>
+
 </div>
 
 </div>
@@ -15271,8 +15441,6 @@ only showing top 20 rows
                         <span class="p">)</span><span class="o">.</span><span class="n">otherwise</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> \
                             <span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;Churn&quot;</span><span class="p">)</span>
                     <span class="p">)</span>
-    <span class="c1"># Log the number of churners</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of churners:&quot;</span><span class="p">,</span> <span class="n">churner_df</span><span class="o">.</span><span class="n">groupBy</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">collect</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
     <span class="c1"># Merge churn column to the original data frame</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">churner_df</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;userId&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">df</span>
@@ -15299,17 +15467,6 @@ only showing top 20 rows
 <div class="output_wrapper">
 <div class="output">
 
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Number of churners: 30249116
-</pre>
-</div>
-</div>
 
 <div class="output_area">
 
@@ -17105,7 +17262,7 @@ only showing top 20 rows
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Modeling">Modeling<a class="anchor-link" href="#Modeling">&#182;</a></h1><p>Now, we will build a machine learning pipeline to perform logistic regression on our extracted dataset.</p>
+<h1 id="Modeling">Modeling<a class="anchor-link" href="#Modeling">&#182;</a></h1><p>Now, we will build a machine learning pipeline to perform logistic regression, random forest classification, and support vector machine on our extracted dataset.</p>
 
 </div>
 </div>
@@ -17130,41 +17287,21 @@ only showing top 20 rows
 <div class="prompt input_prompt">In&nbsp;[58]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">build_grid_search_cv</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Build a machine learning pipeline and grid search&quot;&quot;&quot;</span>
-    <span class="c1"># Assemble features</span>
-    <span class="n">assembler</span> <span class="o">=</span> <span class="n">VectorAssembler</span><span class="p">(</span><span class="n">inputCols</span><span class="o">=</span><span class="p">[</span>
-        <span class="s2">&quot;Total number of interactions&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Registration timestamp&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Last interaction timestamp&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;User lifetime&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Average interations during lifetime&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Level&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Percentage of Thumbs Up&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Percentage of Thumbs Down&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Percentage of Home&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Percentage of NextSong&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Percentage of Add to Playlist&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Percentage of Roll Advert&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Percentage of Downgrade&quot;</span>
-    <span class="p">],</span> <span class="n">outputCol</span><span class="o">=</span><span class="s2">&quot;features&quot;</span><span class="p">)</span>
-    
-    <span class="c1"># Scale features</span>
-    <span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">(</span><span class="n">inputCol</span><span class="o">=</span><span class="s2">&quot;features&quot;</span><span class="p">,</span> <span class="n">outputCol</span><span class="o">=</span><span class="s2">&quot;scaledFeatures&quot;</span><span class="p">,</span> <span class="n">withStd</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">withMean</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    
-    <span class="n">lr</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">featuresCol</span><span class="o">=</span><span class="s2">&quot;scaledFeatures&quot;</span><span class="p">,</span> <span class="n">labelCol</span><span class="o">=</span><span class="s2">&quot;Churn&quot;</span><span class="p">)</span>
-    <span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">stages</span><span class="o">=</span><span class="p">[</span><span class="n">assembler</span><span class="p">,</span> <span class="n">scaler</span><span class="p">,</span> <span class="n">lr</span><span class="p">])</span>
-    
-    <span class="n">paramGrid</span> <span class="o">=</span> <span class="n">ParamGridBuilder</span><span class="p">()</span> \
-        <span class="o">.</span><span class="n">addGrid</span><span class="p">(</span><span class="n">lr</span><span class="o">.</span><span class="n">maxDepth</span><span class="p">,[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">30</span><span class="p">])</span> \
-        <span class="o">.</span><span class="n">addGrid</span><span class="p">(</span><span class="n">lr</span><span class="o">.</span><span class="n">numTrees</span><span class="p">,[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span> \
-        <span class="o">.</span><span class="n">build</span><span class="p">()</span>
-
-    <span class="n">crossval</span> <span class="o">=</span> <span class="n">CrossValidator</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">pipeline</span><span class="p">,</span>
-                              <span class="n">estimatorParamMaps</span><span class="o">=</span><span class="n">paramGrid</span><span class="p">,</span>
-                              <span class="n">evaluator</span><span class="o">=</span><span class="n">MulticlassClassificationEvaluator</span><span class="p">(</span><span class="n">metricName</span><span class="o">=</span><span class="s1">&#39;f1&#39;</span><span class="p">,</span> <span class="n">labelCol</span><span class="o">=</span><span class="s2">&quot;Churn&quot;</span><span class="p">),</span>
-                              <span class="n">numFolds</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">crossval</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">selected_features</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Total number of interactions&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Registration timestamp&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Last interaction timestamp&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;User lifetime&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Average interations during lifetime&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Level&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Percentage of Thumbs Up&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Percentage of Thumbs Down&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Percentage of Home&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Percentage of NextSong&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Percentage of Add to Playlist&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Percentage of Roll Advert&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Percentage of Downgrade&quot;</span>
+<span class="p">]</span>
 </pre></div>
 
     </div>
@@ -17177,8 +17314,21 @@ only showing top 20 rows
 <div class="prompt input_prompt">In&nbsp;[59]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">split_data</span><span class="p">(</span><span class="n">extracted_df</span><span class="p">)</span>
-<span class="n">cv</span> <span class="o">=</span> <span class="n">build_grid_search_cv</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">build_grid_search_cv</span><span class="p">(</span><span class="n">classifier</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Build a machine learning pipeline and grid search&quot;&quot;&quot;</span>
+    <span class="c1"># Assemble features</span>
+    <span class="n">assembler</span> <span class="o">=</span> <span class="n">VectorAssembler</span><span class="p">(</span><span class="n">inputCols</span><span class="o">=</span><span class="n">selected_features</span><span class="p">,</span> <span class="n">outputCol</span><span class="o">=</span><span class="s2">&quot;features&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Scale features</span>
+    <span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">(</span><span class="n">inputCol</span><span class="o">=</span><span class="s2">&quot;features&quot;</span><span class="p">,</span> <span class="n">outputCol</span><span class="o">=</span><span class="s2">&quot;scaledFeatures&quot;</span><span class="p">,</span> <span class="n">withStd</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">withMean</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">stages</span><span class="o">=</span><span class="p">[</span><span class="n">assembler</span><span class="p">,</span> <span class="n">scaler</span><span class="p">,</span> <span class="n">classifier</span><span class="p">])</span>
+
+    <span class="n">crossval</span> <span class="o">=</span> <span class="n">CrossValidator</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">pipeline</span><span class="p">,</span>
+                              <span class="n">estimatorParamMaps</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
+                              <span class="n">evaluator</span><span class="o">=</span><span class="n">MulticlassClassificationEvaluator</span><span class="p">(</span><span class="n">metricName</span><span class="o">=</span><span class="s1">&#39;f1&#39;</span><span class="p">,</span> <span class="n">labelCol</span><span class="o">=</span><span class="s2">&quot;Churn&quot;</span><span class="p">),</span>
+                              <span class="n">numFolds</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">crossval</span>
 </pre></div>
 
     </div>
@@ -17191,7 +17341,7 @@ only showing top 20 rows
 <div class="prompt input_prompt">In&nbsp;[60]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">split_data</span><span class="p">(</span><span class="n">extracted_df</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -17204,7 +17354,52 @@ only showing top 20 rows
 <div class="prompt input_prompt">In&nbsp;[61]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The best f1 score: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">avgMetrics</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Random forest</span>
+<span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">featuresCol</span><span class="o">=</span><span class="s2">&quot;scaledFeatures&quot;</span><span class="p">,</span> <span class="n">labelCol</span><span class="o">=</span><span class="s2">&quot;Churn&quot;</span><span class="p">)</span>
+<span class="n">rf_cv</span> <span class="o">=</span> <span class="n">build_grid_search_cv</span><span class="p">(</span>
+    <span class="n">rf</span><span class="p">,</span>
+    <span class="n">ParamGridBuilder</span><span class="p">()</span> \
+        <span class="o">.</span><span class="n">addGrid</span><span class="p">(</span><span class="n">rf</span><span class="o">.</span><span class="n">maxDepth</span><span class="p">,</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">30</span><span class="p">])</span> \
+        <span class="o">.</span><span class="n">addGrid</span><span class="p">(</span><span class="n">rf</span><span class="o">.</span><span class="n">numTrees</span><span class="p">,</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span> \
+        <span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="p">)</span>
+<span class="n">rf_model</span> <span class="o">=</span> <span class="n">rf_cv</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[62]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Logistic regression</span>
+<span class="n">lr</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">featuresCol</span><span class="o">=</span><span class="s2">&quot;scaledFeatures&quot;</span><span class="p">,</span> <span class="n">labelCol</span><span class="o">=</span><span class="s2">&quot;Churn&quot;</span><span class="p">)</span>
+<span class="n">lr_cv</span> <span class="o">=</span> <span class="n">build_grid_search_cv</span><span class="p">(</span>
+    <span class="n">lr</span><span class="p">,</span>
+    <span class="n">ParamGridBuilder</span><span class="p">()</span> \
+        <span class="o">.</span><span class="n">addGrid</span><span class="p">(</span><span class="n">lr</span><span class="o">.</span><span class="n">regParam</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">])</span> \
+        <span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="p">)</span>
+<span class="n">lr_model</span> <span class="o">=</span> <span class="n">lr_cv</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[66]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The best f1 scores are: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Random forest:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">rf_model</span><span class="o">.</span><span class="n">avgMetrics</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Logistic regression:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">lr_model</span><span class="o">.</span><span class="n">avgMetrics</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -17221,7 +17416,9 @@ only showing top 20 rows
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>The best f1 score:  0.8814636589809766
+<pre>The best f1 scores are: 
+Random forest: 0.8866945169299485
+Logistic regression: 0.8682321391735732
 </pre>
 </div>
 </div>
@@ -17232,11 +17429,12 @@ only showing top 20 rows
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[62]:</div>
+<div class="prompt input_prompt">In&nbsp;[67]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The best parameters are:&quot;</span><span class="p">)</span>
-<span class="n">model</span><span class="o">.</span><span class="n">getEstimatorParamMaps</span><span class="p">()[</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">avgMetrics</span><span class="p">)</span> <span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Random forest:&quot;</span><span class="p">,</span> <span class="n">rf_model</span><span class="o">.</span><span class="n">getEstimatorParamMaps</span><span class="p">()[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">rf_model</span><span class="o">.</span><span class="n">avgMetrics</span><span class="p">)])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Logistic regression:&quot;</span><span class="p">,</span> <span class="n">lr_model</span><span class="o">.</span><span class="n">getEstimatorParamMaps</span><span class="p">()[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">lr_model</span><span class="o">.</span><span class="n">avgMetrics</span><span class="p">)])</span>
 </pre></div>
 
     </div>
@@ -17254,22 +17452,10 @@ only showing top 20 rows
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>The best parameters are:
+Random forest: {Param(parent=&#39;RandomForestClassifier_c9aff355bb8b&#39;, name=&#39;maxDepth&#39;, doc=&#39;Maximum depth of the tree. (&gt;= 0) E.g., depth 0 means 1 leaf node; depth 1 means 1 internal node + 2 leaf nodes.&#39;): 12, Param(parent=&#39;RandomForestClassifier_c9aff355bb8b&#39;, name=&#39;numTrees&#39;, doc=&#39;Number of trees to train (&gt;= 1).&#39;): 100}
+Logistic regression: {Param(parent=&#39;LogisticRegression_3734b379bc0f&#39;, name=&#39;regParam&#39;, doc=&#39;regularization parameter (&gt;= 0).&#39;): 0.01}
 </pre>
 </div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[62]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>{Param(parent=&#39;RandomForestClassifier_5c12e97fffb4&#39;, name=&#39;maxDepth&#39;, doc=&#39;Maximum depth of the tree. (&gt;= 0) E.g., depth 0 means 1 leaf node; depth 1 means 1 internal node + 2 leaf nodes.&#39;): 12,
- Param(parent=&#39;RandomForestClassifier_5c12e97fffb4&#39;, name=&#39;numTrees&#39;, doc=&#39;Number of trees to train (&gt;= 1).&#39;): 20}</pre>
-</div>
-
 </div>
 
 </div>
@@ -17285,10 +17471,18 @@ only showing top 20 rows
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[63]:</div>
+<div class="prompt input_prompt">In&nbsp;[68]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">prediction</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Predict the test dataset with the given model and print the result&quot;&quot;&quot;</span>
+    <span class="n">prediction</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+    <span class="n">test_accuracy</span> <span class="o">=</span> <span class="n">MulticlassClassificationEvaluator</span><span class="p">(</span><span class="n">labelCol</span><span class="o">=</span><span class="s2">&quot;Churn&quot;</span><span class="p">,</span> <span class="n">metricName</span><span class="o">=</span><span class="s2">&quot;accuracy&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">prediction</span><span class="p">)</span>
+    <span class="n">test_f1</span> <span class="o">=</span> <span class="n">MulticlassClassificationEvaluator</span><span class="p">(</span><span class="n">labelCol</span><span class="o">=</span><span class="s2">&quot;Churn&quot;</span><span class="p">,</span> <span class="n">metricName</span><span class="o">=</span><span class="s2">&quot;f1&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">prediction</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Predicted correctly&quot;</span><span class="p">,</span> <span class="n">prediction</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">prediction</span><span class="o">.</span><span class="n">Churn</span> <span class="o">==</span> <span class="n">prediction</span><span class="o">.</span><span class="n">prediction</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="s2">&quot;out of&quot;</span><span class="p">,</span> <span class="n">prediction</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="s2">&quot;on test dataset&quot;</span><span class="p">)</span>
+        <span class="n">prediction</span><span class="o">.</span><span class="n">groupBy</span><span class="p">([</span><span class="s2">&quot;Churn&quot;</span><span class="p">,</span> <span class="s2">&quot;prediction&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">test_f1</span><span class="p">,</span> <span class="n">test_accuracy</span>
 </pre></div>
 
     </div>
@@ -17298,10 +17492,11 @@ only showing top 20 rows
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[64]:</div>
+<div class="prompt input_prompt">In&nbsp;[69]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Predicted correctly&quot;</span><span class="p">,</span> <span class="n">prediction</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">prediction</span><span class="o">.</span><span class="n">Churn</span> <span class="o">==</span> <span class="n">prediction</span><span class="o">.</span><span class="n">prediction</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="s2">&quot;out of&quot;</span><span class="p">,</span> <span class="n">prediction</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="s2">&quot;on test dataset&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Random forest:&quot;</span><span class="p">)</span>
+<span class="n">predict</span><span class="p">(</span><span class="n">rf_model</span><span class="o">.</span><span class="n">bestModel</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -17318,47 +17513,85 @@ only showing top 20 rows
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Predicted correctly 34 out of 36 on test dataset
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[65]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">prediction</span><span class="o">.</span><span class="n">groupBy</span><span class="p">([</span><span class="s2">&quot;Churn&quot;</span><span class="p">,</span> <span class="s2">&quot;prediction&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>+-----+----------+-----+
+<pre>Random forest:
+Predicted correctly 33 out of 36 on test dataset
++-----+----------+-----+
 |Churn|prediction|count|
 +-----+----------+-----+
-|    1|       0.0|    2|
+|    1|       0.0|    3|
 |    0|       0.0|   26|
-|    1|       1.0|    8|
+|    1|       1.0|    7|
 +-----+----------+-----+
 
 </pre>
 </div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[69]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(0.9115864527629233, 0.9166666666666666)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[70]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Logistic regression:&quot;</span><span class="p">)</span>
+<span class="n">predict</span><span class="p">(</span><span class="n">lr_model</span><span class="o">.</span><span class="n">bestModel</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Logistic regression:
+Predicted correctly 33 out of 36 on test dataset
++-----+----------+-----+
+|Churn|prediction|count|
++-----+----------+-----+
+|    1|       0.0|    3|
+|    0|       0.0|   26|
+|    1|       1.0|    7|
++-----+----------+-----+
+
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[70]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(0.9115864527629233, 0.9166666666666666)</pre>
+</div>
+
 </div>
 
 </div>
@@ -17374,26 +17607,13 @@ only showing top 20 rows
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[66]:</div>
+<div class="prompt input_prompt">In&nbsp;[71]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="p">[</span>
-        <span class="s2">&quot;Total number of interactions&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Registration timestamp&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Last interaction timestamp&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;User lifetime&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Average interations during lifetime&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Level&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Percentage of Thumbs Up&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Percentage of Thumbs Down&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Percentage of Home&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Percentage of NextSong&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Percentage of Add to Playlist&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Percentage of Roll Advert&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Percentage of Downgrade&quot;</span>
-    <span class="p">],</span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">index</span><span class="o">=</span><span class="n">selected_features</span><span class="p">,</span> 
     <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Feature importance&quot;</span><span class="p">],</span>
-    <span class="n">data</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">bestModel</span><span class="o">.</span><span class="n">stages</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">featureImportances</span><span class="o">.</span><span class="n">toArray</span><span class="p">()</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">rf_model</span><span class="o">.</span><span class="n">bestModel</span><span class="o">.</span><span class="n">stages</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">featureImportances</span><span class="o">.</span><span class="n">toArray</span><span class="p">()</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
 <span class="p">)</span>
 </pre></div>
 
@@ -17407,7 +17627,7 @@ only showing top 20 rows
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[66]:</div>
+    <div class="prompt output_prompt">Out[71]:</div>
 
 
 
@@ -17436,55 +17656,55 @@ only showing top 20 rows
   <tbody>
     <tr>
       <th>Total number of interactions</th>
-      <td>0.103987</td>
+      <td>0.080507</td>
     </tr>
     <tr>
       <th>Registration timestamp</th>
-      <td>0.081704</td>
+      <td>0.115205</td>
     </tr>
     <tr>
       <th>Last interaction timestamp</th>
-      <td>0.262329</td>
+      <td>0.251803</td>
     </tr>
     <tr>
       <th>User lifetime</th>
-      <td>0.122360</td>
+      <td>0.124585</td>
     </tr>
     <tr>
       <th>Average interations during lifetime</th>
-      <td>0.128991</td>
+      <td>0.109617</td>
     </tr>
     <tr>
       <th>Level</th>
-      <td>0.011360</td>
+      <td>0.003864</td>
     </tr>
     <tr>
       <th>Percentage of Thumbs Up</th>
-      <td>0.031204</td>
+      <td>0.042043</td>
     </tr>
     <tr>
       <th>Percentage of Thumbs Down</th>
-      <td>0.040703</td>
+      <td>0.051218</td>
     </tr>
     <tr>
       <th>Percentage of Home</th>
-      <td>0.036691</td>
+      <td>0.043494</td>
     </tr>
     <tr>
       <th>Percentage of NextSong</th>
-      <td>0.031239</td>
+      <td>0.033601</td>
     </tr>
     <tr>
       <th>Percentage of Add to Playlist</th>
-      <td>0.045979</td>
+      <td>0.040307</td>
     </tr>
     <tr>
       <th>Percentage of Roll Advert</th>
-      <td>0.051591</td>
+      <td>0.056706</td>
     </tr>
     <tr>
       <th>Percentage of Downgrade</th>
-      <td>0.051863</td>
+      <td>0.047049</td>
     </tr>
   </tbody>
 </table>
